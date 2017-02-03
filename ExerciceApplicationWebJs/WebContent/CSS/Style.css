@@ -1,0 +1,45 @@
+@CHARSET "ISO-8859-1";
+
+.dropdown:hover > #cart-dropdown{
+  display: block;
+}
+.lesDivPrin{
+	border-color: black;
+	background-color: blue;
+	width: 150px;
+	}
+.divProduit{
+	border-style: solid;
+    border-width: 5px;
+    margin-bottom: 20px;
+}
+
+/*.lesDivPrin{
+	display: inline block;
+
+}*/
+#div1
+{
+	float:left;
+    width:60%;
+    border-style: dotted double;
+    border-color: black;
+}
+
+#div2
+{
+	 margin-left:60%;
+	 border-color: red;
+	background-color: yellow;  
+}
+
+.btBasket
+{
+	margin-left: 10px;
+}
+
+#orderedProductsTbl
+{
+	visibility: hidden;
+}
+	

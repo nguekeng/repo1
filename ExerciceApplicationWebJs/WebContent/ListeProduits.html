@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="CSS/Style.css">
+<title>Insert title here</title>
+</head>
+<body>
+<p ></p>
+
+<div class="lesDivPrin" id="div1">
+<h1>LA LISTE DE PRODUITS</h1>
+</div>
+<div class="lesDivPrin1" id="div2">
+
+<H1>LE PANNIER D'ACHAT</H1>
+<P id="nbreDeProd">Nombre de Produit Dans le pannier : </P>
+<button id="affichePanier">AFFICHER PANIER</button>
+<br />
+<br />
+<br />
+   
+            <table cellpadding="4" cellspacing="4" border="1" id="orderedProductsTbl">
+                <thead>
+                    <tr>
+                        <td>
+                            Nom
+                        </td>
+                        <td>
+                            Description
+                        </td>
+                        <td>
+                            Prix
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="productBodyTable">
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                    	<td>
+                    		Prix Total
+                    	</td>
+                        <td colspan="3" align="right" id="cart_total">
+
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        
+  
+        
+         
+</div>
+
+
+
+</body>
+
+<script>
+
+function produit(nom, prix, monurl,detailProd,descriptionProd){
+	this.nom =nom;
+	this.prix = prix;
+	this.url = monurl;
+	this.detailProduit = detailProd;
+	this.descriptionProduit = descriptionProd;
+	
+	
+}
+
+var descriptionMangue = "La mangue est le fruit du manguier, grand arbre tropical de la famille des Anacardiacea, originaire des forêts d'Inde, du Pakistan et de la Birmanie où il pousse encore à l'état sauvage. Cet arbre, le Mangifera indica, a un feuillage persistant, dense et vert foncé.";
+var descriptionBanane = "La banane est le fruit ou la baie dérivant de l’inflorescence du bananier. Les bananes sont des fruits très généralement stériles issus de variétés domestiquées. Les fruits des bananiers sauvages et de quelques cultivars domestiques contiennent des graines. Les bananes sont généralement jaunes avec des taches burnâtres lorsqu'elles sont mûres et vertes quand elles ne le sont pas.";
+var descriptionOrange = "L’orange est un agrume, fruit des orangers, des arbres de différentes espèces de la famille des Rutacées ou d'hybrides de ceux-ci. Il en existe donc plusieurs types, principalement issus de l'espèce Citrus sinensis comme les oranges sanguines, et les oranges amères produites par le bigaradier.";
+var descriptionGrenade = "La grenade est un fruit arrondi, de plus de 10 cm de diamètre généralement, de couleur jaune-rouge avec des nuances brunâtres. Le fruit contient une pulpe juteuse rose entourant des graines. C'est cette pulpe que l'on consomme, soit fraîche, soit sous forme de jus, sirop ou alcool.";
+var decriptionMelonEau = "La pastèque (Citrullus lanatus (Thunb.) Matsum. & Nakai, 1916), aussi appelée melon d'eau, notamment au Québec, est une espèce de plantes herbacées de la famille des Cucurbitacées, originaire d'Afrique de l'Ouest1, largement cultivée pour ses gros fruits lisses, à chair rouge, jaune, verdâtre ou blanche et à graines noires ou rouges. Le terme désigne également ce fruit. Le fruit pèse généralement, à maturité, entre 5 et 20 kg.";
+var descriptionPeche = "Les pêches sont des fruits climactériques charnus, juteux et sucrés, avec une chair jaune, blanche, ou rouge (sanguine), une peau veloutée de couleur jaune ou orange plus ou moins lavée de rose-carmin à rose-saumon ou brune chez les sanguines, et un noyau dur, adhérent ou non.";
+//creation des objets produit
+var produit1 = new produit("banane",15,"images/banane.jpg","belle banane jaune",descriptionBanane);
+var produit2 = new produit("mangue",8,"images/mangue.jpg","manque charnue",descriptionMangue);
+var produit3 = new produit("orange",10,"images/orange.jpg","orange juteuse",descriptionOrange);
+var produit4 = new produit("Grenade",12,"images/grenade.jpg","grenade rouge",descriptionGrenade);
+var produit5 = new produit("Melon d'eau",7,"images/pasteque.jpg","mellon d'eau sucre",decriptionMelonEau);
+var produit6 = new produit("Peche",18,"images/peche.jpg","peche mielleux",descriptionPeche);
+
+var listeProd = [];
+listeProd[0]=produit1;
+listeProd[1] = produit2;
+listeProd[2]=produit3;
+listeProd[3] = produit4;
+listeProd[4]=produit5;
+listeProd[5] = produit6;
+
+var nombreProduit = 0;
+document.getElementById("nbreDeProd").innerHTML = "Nombre de Produit Dans le pannier :" + nombreProduit;
+//var lePDuNbreProd = document.getElementById("nbreDeProd");
+//lePDuNbreProd.inn
+
+
+for ( var int = 0; int < listeProd.length; int++) {
+	var n = document.createElement("p");
+	n.setAttribute("id", int);	
+	var element = document.getElementById("div1");
+	var div2 = document.createElement("div");
+	div2.setAttribute("class", "divProduit");
+	div2.setAttribute("id", "divProd"+int);
+
+	element.appendChild(div2);
+	
+	
+	//image du produit
+	var img = document.createElement("img");
+	img.src = listeProd[int].url;
+	
+	//nom du produit
+	var namProd = document.createElement("p");
+	var nameVal = document.createTextNode("Nom Produit :" + listeProd[int].nom);
+	namProd.appendChild(nameVal);
+	
+	//prix du produit
+	var priceProd = document.createElement("p");
+	var priceVal = document.createTextNode("Prix Produit :" + listeProd[int].prix + "$");
+	priceProd.appendChild(priceVal);
+	
+	
+	//create detail button
+ 	var detailButon = document.createElement("input");
+	detailButon.setAttribute("id",int);	
+	detailButon.type = "submit";
+	detailButon.value = "Detail";
+	
+	//bouton ajouter au panier
+	
+	var basketButon = document.createElement("input");
+	basketButon.setAttribute("id","basket"+int);
+	basketButon.setAttribute("class","btBasket");
+	basketButon.type = "submit";
+	basketButon.value = "Add to basket";
+	
+	
+	//get the div according to the position of the array
+	var element1 = document.getElementById("divProd"+int);
+	
+	//add elements to the div
+	element1.appendChild(img);
+	element1.appendChild(namProd);
+	element1.appendChild(priceProd);
+	element1.appendChild(detailButon);
+	element1.appendChild(basketButon);
+
+}
+
+//open the right popup page with the informations on the products
+
+for ( var int = 0; int < listeProd.length; int++) 
+{
+	var detalbut = document.getElementById(int);
+
+	detalbut.addEventListener('click', function(){
+	
+		var idBtClick = this.getAttribute('id');
+		var imageUrl = listeProd[idBtClick].url;
+		var description = listeProd[idBtClick].descriptionProduit;
+		window.open('Detail.html?p=' +imageUrl+ '?s=' + description,'fenetre','width=700,height=400,top=200,left=400,status = no');
+		
+	});
+		
+}
+
+//add the click even on the add basket button and call the function to add products to basket
+
+for ( var int = 0; int < listeProd.length; int++) 
+{
+	//get the button
+	var btBasketAdd = document.getElementById("basket"+int);
+
+	var numrecup = btBasketAdd.addEventListener('click', function(){
+		//get the button atribut
+		var idBtClicker = this.getAttribute('id');
+		//extract the nombre from the id
+		var theNnmberFromId = extractNumbersFromString(idBtClicker);
+		var numId = extractNumbersFromString(idBtClicker);
+		//add the element that is store t that location of the product table
+		AddtoCart(listeProd[theNnmberFromId].nom,listeProd[theNnmberFromId].detailProduit,listeProd[theNnmberFromId].prix);
+		
+	});
+	
+}
+
+
+//display basket
+/*var btAffichePanier = document.getElementById("affichePanier")
+btAffichePanier.addEventListener('click', function(){
+	var btValue = this.textContent;
+	if(btValue = "AFFICHER PANIER"){
+		document.getElementById("orderedProductsTbl").style.visibility = "visible";
+		this.innerHTML = "MASQUER LE PANNIER";
+		
+	}else if(btValue = "MASQUER LE PANNIER"){
+		document.getElementById("orderedProductsTbl").style.visibility = "hidden";
+		btAffichePanier.innerHTML = "AFFICHER PANIER";
+	}
+	alert(this.textContent); //bonjour
+	alert(this.innerHTML); //le html de la div
+	
+	
+	
+});*/
+
+
+var btAffichePanier = document.getElementById("affichePanier")
+btAffichePanier.addEventListener('click', function(){
+	var btValue = this.textContent;
+	document.getElementById("orderedProductsTbl").style.visibility = "visible";
+	
+});
+
+
+
+//extract nomber from string
+function extractNumbersFromString(str)
+{ 
+	return Number(str.replace(/[^\d]/g, "")) 
+}
+
+
+
+
+
+//shopping basket array
+var shoppingBasket = [];
+/*
+ * this function display the shopping basket elements
+ */
+
+function displayTheShopingBasket(){
+    var productBodyTable=document.getElementById("productBodyTable");
+    
+    while(productBodyTable.rows.length>0) {
+        productBodyTable.deleteRow(0);
+    }
+
+    //variable to hold total price of shopping cart
+    var cart_total_price=0;
+    //iterate on array 
+    for(var product in shoppingBasket){
+        //add new row      
+        var row=productBodyTable.insertRow();
+        //create cell for product caracteristics
+        var cellName = row.insertCell(0);
+        var cellDescription = row.insertCell(1);
+        var cellPrice = row.insertCell(2);
+        cellPrice.align="right";
+        //fill cells with values from current product object of our array
+        cellName.innerHTML = shoppingBasket[product].Name;
+        cellDescription.innerHTML = shoppingBasket[product].Description;
+        cellPrice.innerHTML = shoppingBasket[product].Price;
+        cart_total_price+=shoppingBasket[product].Price;
+    }
+    //fill total cost of our shopping cart 
+    document.getElementById("cart_total").innerHTML= cart_total_price;
+}
+
+/*
+ * this function add elements in the list of basket elements
+ */
+function AddtoCart(name,description,price){
+   //list of product properties
+   var singleProduct = {};
+   //give properties the values
+   singleProduct.Name=name;
+   singleProduct.Description=description;
+   singleProduct.Price=price;
+   //add elements to the list
+   shoppingBasket.push(singleProduct);
+   //call ths function that display the shoping basket
+   displayTheShopingBasket();
+   //add the numb of product in the basket
+   nombreProduit++
+   //rewrite the value of P with the update numbre of product
+   document.getElementById("nbreDeProd").innerHTML = "Nombre de Produit Dans le pannier :" + nombreProduit;
+}  
+
+
+</script>
+</html>
